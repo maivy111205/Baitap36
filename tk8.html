@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <title>Bài tập TK8 - Hex sang RGB</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h2>Bài tập TK8: Chuyển đổi màu Hex sang RGB</h2>
+        <input type="text" id="hexInput" placeholder="Nhập mã Hex (VD: #FF0000)">
+        <button onclick="convertHexToRGB()">Chuyển đổi</button>
+        <p>Kết quả: <strong id="rgbResult">-</strong></p>
+        <a href="index.html">&larr; Quay lại trang chủ</a>
+    </div>
+    <script>
+        function convertHexToRGB() {
+            let hex = document.getElementById("hexInput").value.trim();
+            if (hex.startsWith('#')) hex = hex.slice(1);
+            if (hex.length === 3) {
+                hex = hex.split('').map(c => c + c).join('');
+            }
+            if (hex.length !== 6) {
+                document.getElementById("rgbResult").innerText = "Mã Hex không hợp lệ!";
+                return;
+            }
+            let r = parseInt(hex.substring(0, 2), 16);
+            let g = parseInt(hex.substring(2, 4), 16);
+            let b = parseInt(hex.substring(4, 6), 16);
+            document.getElementById("rgbResult").innerText = `rgb(${r}, ${g}, ${b})`;
+        }
+    </script>
+</body>
+</html>
